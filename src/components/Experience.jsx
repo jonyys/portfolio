@@ -12,8 +12,21 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 
 export const Experience = (props) => {
-  const { section } = props;
+  const { section, menuOpened } = props;
   const { viewport } = useThree();
+
+  const cameraPosition = useMotionValue();
+  const cameraLookAt = useMotionValue();
+
+  useEffect(() => {
+    animate(cameraPosition, menuOpened ? -5 : 0);
+    animate(cameraLookAt, menuOpened ? 5 : 0);
+  }, [menuOpened]);
+
+  useFrame((state) => {
+    state.camera.position.x = cameraPosition.get();
+    state.camera.lookAt(cameraLookAt.get(), 0, 0);
+  });
 
   return (
     <>
