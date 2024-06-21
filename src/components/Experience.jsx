@@ -39,7 +39,9 @@ export const Experience = (props) => {
           y: section === 0 ? 0 : -1,
         }}
       >
-        <Office section={section} />
+        <group scale={[1.5, 1.5, 1.5]}>
+          <Office section={section} />
+        </group>
       </motion.group>
 
       <motion.group
@@ -86,7 +88,7 @@ export const Experience = (props) => {
             />
           </mesh>
         </Float>
-        <group scale={[2, 2, 2]} position-y={-1.5}>
+        <group scale={[2.7, 2.7, 2.7]} position-y={-2.2}>
           <Avatar animation={section === 0 ? "Falling" : "Standing"} />
         </group>
       </motion.group>
