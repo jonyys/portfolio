@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import AnimatedLetter from "./AnimatedLetter";
 
 const Section = (props) => {
   const { children } = props;
@@ -37,16 +38,44 @@ export const Interface = () => {
   );
 };
 
+const isLetter = (char) => {
+  return /[a-zA-Z]/.test(char);
+};
+
 const AboutSection = () => {
+  const name = "Jonathan";
+  const hiIm = "Hi, I'm";
+  const developer = "Developer";
+
   return (
     <Section>
-      <h1 className="text-6xl font-extrabold leading-snug">
-        Hi, I'm
+      <h1 className="text-8xl font-extrabold leading-snug">
+        <span className="text-7xl font-bold">
+          {hiIm
+            .split("")
+            .map((letter, index) =>
+              isLetter(letter) ? (
+                <AnimatedLetter key={index} letter={letter} />
+              ) : (
+                <span key={index}>{letter}</span>
+              )
+            )}
+        </span>
         <br />
-        <span className="bg-white px-1 italic">Jonathan</span>
+        <span className="bg-white px-6 italic">
+          {name
+            .split("")
+            .map((letter, index) =>
+              isLetter(letter) ? (
+                <AnimatedLetter key={index} letter={letter} />
+              ) : (
+                <span key={index}>{letter}</span>
+              )
+            )}
+        </span>
       </h1>
       <motion.p
-        className="text-3xl mt-4 text-gray-400"
+        className="text-4xl mt-4 text-gray-400"
         initial={{
           opacity: 0,
           y: 25,
@@ -60,12 +89,21 @@ const AboutSection = () => {
           delay: 1.5,
         }}
       >
-        Developer
+        {developer
+          .split("")
+          .map((letter, index) =>
+            isLetter(letter) ? (
+              <AnimatedLetter key={index} letter={letter} />
+            ) : (
+              <span key={index}>{letter}</span>
+            )
+          )}
       </motion.p>
       <motion.button
         className={`
-      bg-indigo-600 text-white py-4 px-8
-      rounded-lg font-bold text-lg mt-16`}
+          bg-indigo-600 text-white py-4 px-8
+          rounded-lg font-bold text-lg mt-16
+        `}
         initial={{
           opacity: 0,
           y: 25,
